@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#42a5f5</color>
+    <color name="primaryColor">#24B9FA</color>
     <color name="primaryLightColor">#80d6ff</color>
-    <color name="primaryDarkColor">#0077c2</color>
+    <color name="primaryDarkColor">#79CFF4</color>
     <color name="secondaryColor">#4fc3f7</color>
     <color name="secondaryLightColor">#8bf6ff</color>
     <color name="secondaryDarkColor">#0093c4</color>
@@ -11,5 +11,10 @@
 
     <color name="gray">#4FD5D5D5</color>
     <color name="grayDarker">#9BD5D5D5</color>
+
+    <color name="whiteSecondary">#F0F0F0</color>
+
+    <color name="selectedBg">#5BB6B6B6</color>
+    <color name="selectedText">#494949</color>
 
 </resources>

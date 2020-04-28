@@ -2,4 +2,19 @@
     <string name="app_name">JamSholat</string>
     <string name="mosque_image_desc">Mosque Image</string>
     <string name="tv_desc">Cari Jadwal Sholat Dengan Mudah</string>
+
+    <!-- TODO: Convert nama waktu sholat -->
+    <string name="Fajr">Subuh(Fajr)</string>
+    <string name="Dhuhr">Dzuhur</string>
+    <string name="Asr">Ashar</string>
+    <string name="Maghrib">Maghrib</string>
+    <string name="Isha">Isya\'</string>
+    <string name="Imsak">Imsyak</string>
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_home">Home</string>
+    <string name="cari">Cari</string>
+    <string name="history">History</string>
 </resources>

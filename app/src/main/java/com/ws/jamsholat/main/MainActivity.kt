@@ -1,11 +1,12 @@
 package com.ws.jamsholat.main
 
-import androidx.appcompat.app.AppCompatActivity
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.ws.jamsholat.R
 import com.ws.jamsholat.model.Data
-import com.ws.jamsholat.model.Timings
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), IMainView{
@@ -22,8 +23,8 @@ class MainActivity : AppCompatActivity(), IMainView{
     override fun onDataCompleteFromApi(data: Data) {
         val time = data.timings
         val date = data.date
-        tv_time.text = date?.readable
-        tv_hijri.text = date?.hijri?.date
+        tv_tanggal_dan_hari.text = date?.readable
+        //tv_hijri.text = date?.hijri?.date
         tv_Imsak.text = time?.imsak.toString()
         tv_Fajr.text = time?.fajr.toString()
         tv_Dhuhr.text = time?.dhuhr.toString()
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity(), IMainView{
 
     override fun onDataErrorFromApi(throwable: Throwable) {
         error("error ------------> ${throwable.localizedMessage}")
-        Toast.makeText(this,"Error ${throwable.localizedMessage.toString()}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"Error ${throwable?.localizedMessage}", Toast.LENGTH_SHORT).show()
     }
 
 
