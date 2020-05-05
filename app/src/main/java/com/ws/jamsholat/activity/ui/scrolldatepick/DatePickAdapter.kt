@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -37,10 +38,6 @@ class DatePickAdapter(private val dataItem: List<DataItem>, private val firstIte
             iDatePicker.onDateClick(dataItem[position], position)
         })
 
-    }
-
-    override fun getItemId(position: Int): Long {
-        return super.getItemId(position)
     }
 
     class DatePickerViewHolder(view: View) : RecyclerView.ViewHolder(view) {

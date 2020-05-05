@@ -18,17 +18,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
-class TestUi : AppCompatActivity(),IDatePicker {
+class TestUi : AppCompatActivity(), IDatePicker {
 
     var apiInterface: ApiInterface? = null
     lateinit var datePicker: RecyclerView
     private var day: Int = 0
-    var selectedItemBackground = androidx.cardview.R.color.cardview_dark_background
-    var unselectedItemBackground = androidx.cardview.R.color.cardview_light_background
-
-    var secondView = 0
-    var tempView = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +32,18 @@ class TestUi : AppCompatActivity(),IDatePicker {
 
         val date = Util.getCurrentDate()
 
-        day = date.toInt("d",Locale.ROOT)
+        day = date.toInt("d", Locale.ROOT)
         val month = date.toInt("MM", Locale.ROOT)
         val year = date.toInt("YYYY", Locale.ROOT)
 
         apiInterface = ApiInterface.createHijCalendar()
-        apiInterface!!.getHijCalendar(Util.getCurrentLatitude(),Util.getCurrentLongitude(),"5",month,year).enqueue(object : Callback<Calendar>{
+        apiInterface!!.getHijCalendar(
+            Util.getCurrentLatitude(),
+            Util.getCurrentLongitude(),
+            "5",
+            month,
+            year
+        ).enqueue(object : Callback<Calendar> {
             override fun onFailure(call: Call<Calendar>, t: Throwable) {
 
             }
@@ -57,12 +57,10 @@ class TestUi : AppCompatActivity(),IDatePicker {
         })
     }
 
-    fun dataToAdapter(body: List<DataItem>){
+    fun dataToAdapter(body: List<DataItem>) {
         datePicker.apply {
-            setHasFixedSize(true)
-            setItemViewCacheSize(31)
             layoutManager = LinearLayoutManager(this@TestUi, LinearLayoutManager.HORIZONTAL, false)
-            adapter = DatePickAdapter(body,day)
+            adapter = DatePickAdapter(body, day)
         }
     }
 
@@ -74,7 +72,7 @@ class TestUi : AppCompatActivity(),IDatePicker {
         showData(item)
     }
 
-    private fun showData(item: DataItem){
+    private fun showData(item: DataItem) {
         tv_tanggal.text = item.date?.readable.toString()
         tv_Imsak.text = item.timings?.imsak.toString()
         tv_Fajr.text = item.timings?.fajr.toString()
@@ -82,24 +80,6 @@ class TestUi : AppCompatActivity(),IDatePicker {
         tv_Asr.text = item.timings?.asr.toString()
         tv_Maghrib.text = item.timings?.maghrib.toString()
         tv_Isha.text = item.timings?.isha.toString()
-    }
-
-    private fun itemSelectedAnimation(position: Int){
-        if (secondView != 0){
-            tempView = secondView
-            datePicker[tempView].setBackgroundColor(unselectedItemBackground)
-            secondView = position
-            datePicker[secondView].setBackgroundColor(selectedItemBackground)
-        }else{
-            secondView = position
-            datePicker[position].setBackgroundColor(selectedItemBackground)
-
-        }
-
-
-
-
-
     }
 
 }

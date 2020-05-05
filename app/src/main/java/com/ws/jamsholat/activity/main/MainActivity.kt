@@ -4,22 +4,29 @@ import android.os.Bundle
 import android.util.Log.d
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ws.jamsholat.R
+import com.ws.jamsholat.activity.ui.scrolldatepick.DatePickAdapter
+import com.ws.jamsholat.activity.ui.scrolldatepick.IDatePicker
 import com.ws.jamsholat.model.daily.Data
 import com.ws.jamsholat.model.calendar.Calendar
+import com.ws.jamsholat.model.calendar.DataItem
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), IMainView{
+class MainActivity : AppCompatActivity(), IMainView, IDatePicker{
 
     private lateinit var mainPresenter: MainPresenter
+    private lateinit var datePicker: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        datePicker = findViewById(R.id.date_picker_scroll_day_recycler_view)
 
         mainPresenter = MainPresenter(this)
         mainPresenter.getDataFromApi()
-        mainPresenter.getHijCalendar()
+        mainPresenter.getHijCalendar(datePicker)
 
     }
 
@@ -38,26 +45,34 @@ class MainActivity : AppCompatActivity(), IMainView{
         tv_timedesc.text = "Imsyak"
     }
 
-    override fun onCalendarCompleteFromApi(calendar: Calendar) {
-        /*tv_informasi.text = calendar.data?.get(0)?.date?.readable.toString()*/
-        d("Mainact","Calendar data: ${calendar.data?.size}")
-    }
-
-
     override fun onTimingsErrorFromApi(throwable: Throwable) {
-
         Toast.makeText(this,"Error ${throwable.localizedMessage}", Toast.LENGTH_LONG).show()
     }
 
     override fun onCalendarErrorFromApi(throwable: Throwable) {
-
         Toast.makeText(this,"Error ${throwable.localizedMessage}", Toast.LENGTH_LONG).show()
     }
+
+    override fun onLoadDate(item: DataItem, position: Int) {
+        showData(item)
+    }
+
+    override fun onDateClick(item: DataItem, position: Int) {
+        showData(item)
+    }
+
+    private fun showData(item: DataItem) {
+        tv_Imsak.text = item.timings?.imsak.toString()
+        tv_Fajr.text = item.timings?.fajr.toString()
+        tv_Dhuhr.text = item.timings?.dhuhr.toString()
+        tv_Asr.text = item.timings?.asr.toString()
+        tv_Maghrib.text = item.timings?.maghrib.toString()
+        tv_Isha.text = item.timings?.isha.toString()
+    }
+
 
     private fun hijriTextFormat(day: String, month: String, year: String): String{
         return "$day $month $year"
     }
-
-
 
 }

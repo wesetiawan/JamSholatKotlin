@@ -5,7 +5,6 @@ import com.ws.jamsholat.model.calendar.Calendar
 
 interface IMainView{
     fun onTimingsCompleteFromApi(data: Data)
-    fun onCalendarCompleteFromApi(calendar: Calendar)
     fun onTimingsErrorFromApi(throwable: Throwable)
     fun onCalendarErrorFromApi(throwable: Throwable)
 }
