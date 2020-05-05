@@ -1,36 +1,36 @@
-package com.ws.jamsholat.model
+package com.ws.jamsholat.model.calendar
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Timings(
+data class Offset(
 
 	@field:SerializedName("Sunset")
-	val sunset: String? = null,
+	val sunset: Int? = null,
 
 	@field:SerializedName("Asr")
-	val asr: String? = null,
+	val asr: Int? = null,
 
 	@field:SerializedName("Isha")
-	val isha: String? = null,
+	val isha: Int? = null,
 
 	@field:SerializedName("Fajr")
-	val fajr: String? = null,
+	val fajr: Int? = null,
 
 	@field:SerializedName("Dhuhr")
-	val dhuhr: String? = null,
+	val dhuhr: Int? = null,
 
 	@field:SerializedName("Maghrib")
-	val maghrib: String? = null,
+	val maghrib: Int? = null,
 
 	@field:SerializedName("Sunrise")
-	val sunrise: String? = null,
+	val sunrise: Int? = null,
 
 	@field:SerializedName("Midnight")
-	val midnight: String? = null,
+	val midnight: Int? = null,
 
 	@field:SerializedName("Imsak")
-	val imsak: String? = null
+	val imsak: Int? = null
 ) : Parcelable

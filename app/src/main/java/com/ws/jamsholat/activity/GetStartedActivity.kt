@@ -1,7 +1,8 @@
-package com.ws.jamsholat
+package com.ws.jamsholat.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ws.jamsholat.R
 
 class GetStartedActivity : AppCompatActivity() {
 
