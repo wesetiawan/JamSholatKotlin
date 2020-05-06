@@ -7,11 +7,17 @@
     tools:context=".activity.ui.scrolldatepick.TestUi"
     android:orientation="vertical">
 
-    <include
+    <com.ws.jamsholat.activity.ui.scrolldatepick.ScrollDatePicker
+        tools:listitem="@layout/day_list_item"
+        android:id="@+id/date_picker_scroll_day_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!--<include
         android:id="@+id/date_picker"
         layout="@layout/date_picker_layout"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+        android:layout_width="match_parent"/>-->
 
     <com.ws.jamsholat.activity.ui.scrolldatepick.ScrollDatePicker
         android:layout_width="match_parent"

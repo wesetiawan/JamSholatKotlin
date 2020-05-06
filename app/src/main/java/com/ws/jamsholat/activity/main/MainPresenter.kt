@@ -1,6 +1,7 @@
 package com.ws.jamsholat.activity.main
 
 import android.content.Context
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ws.jamsholat.activity.ui.scrolldatepick.DatePickAdapter
@@ -64,7 +65,6 @@ class MainPresenter(context: Context) {
     private fun dataToAdapter(body: List<DataItem>, recyclerView: RecyclerView) {
         recyclerView.apply {
             hasFixedSize()
-            setItemViewCacheSize(31)
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = DatePickAdapter(body, day)
         }

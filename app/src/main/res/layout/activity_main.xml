@@ -24,16 +24,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
                 android:gravity="end"
                 android:text="21 May 2020"
-                android:layout_marginEnd="10dp"
                 android:textColor="@android:color/white" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_marginTop="40dp"
                 android:id="@+id/tv_jam_menit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:fontFamily="@font/arconrounded"
                 android:gravity="center"
                 android:text="00:00"
@@ -54,21 +54,16 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <RelativeLayout
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:padding="5dp"
-            android:id="@+id/ll_tanggal_holder"
+            android:background="@color/whiteSecondary"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@color/whiteSecondary">
-
+            android:layout_height="wrap_content">
             <include
-                android:id="@+id/date_picker"
+                android:id="@+id/ll_day"
                 layout="@layout/date_picker_layout"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"/>
-
+                android:gravity="center" />
         </RelativeLayout>
+
+
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"

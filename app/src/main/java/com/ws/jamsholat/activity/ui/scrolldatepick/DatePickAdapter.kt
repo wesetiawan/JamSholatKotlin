@@ -31,7 +31,7 @@ class DatePickAdapter(private val dataItem: List<DataItem>, private val firstIte
 
         iDatePicker.onLoadDate(dataItem[firstItem], position)
 
-        holder.date.text = (position + 1).toString()
+        holder.date.text = dataItem[position].date?.readable
 
 
         holder.layout.setOnClickListener(View.OnClickListener {
@@ -42,7 +42,7 @@ class DatePickAdapter(private val dataItem: List<DataItem>, private val firstIte
 
     class DatePickerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val date: TextView = view.findViewById<TextView>(R.id.day_value)
-        val layout: CardView = view.findViewById<CardView>(R.id.cv_day_holder)
+        val layout: RelativeLayout = view.findViewById<RelativeLayout>(R.id.day_holder)
 
     }
 
