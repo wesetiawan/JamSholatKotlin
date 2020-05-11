@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:layout_marginTop="10dp"
                 android:id="@+id/tv_informasi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/arconregular"
-                android:text="Subuh"
+                android:text="Imsyak"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
 
@@ -57,10 +58,10 @@
             android:background="@color/whiteSecondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <include
-                android:id="@+id/ll_day"
-                layout="@layout/date_picker_layout"
-                android:gravity="center" />
+            <com.ws.jamsholat.activity.ui.scrolldatepick.ScrollDatePicker
+                android:id="@+id/sdc_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </RelativeLayout>
 
 

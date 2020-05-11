@@ -1,7 +1,7 @@
 package com.ws.jamsholat.network
 
 import com.ws.jamsholat.model.daily.ShalatData
-import com.ws.jamsholat.model.calendar.Calendar
+import com.ws.jamsholat.activity.ui.scrolldatepick.model.Calendar
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

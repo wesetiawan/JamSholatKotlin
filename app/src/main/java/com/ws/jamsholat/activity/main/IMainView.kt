@@ -1,11 +1,12 @@
 package com.ws.jamsholat.activity.main
 
+import com.ws.jamsholat.activity.ui.scrolldatepick.model.DatePickerModel
 import com.ws.jamsholat.model.daily.Data
-import com.ws.jamsholat.model.calendar.Calendar
 
 interface IMainView{
+    fun onLoadDataFromAPi()
     fun onTimingsCompleteFromApi(data: Data)
     fun onTimingsErrorFromApi(throwable: Throwable)
-    fun onCalendarCompleteFromApi(calendar: Calendar)
+    fun onCalendarCompleteFromApi(dataItem: List<DatePickerModel>)
     fun onCalendarErrorFromApi(throwable: Throwable)
 }

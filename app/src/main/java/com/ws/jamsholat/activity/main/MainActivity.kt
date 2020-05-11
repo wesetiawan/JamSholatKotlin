@@ -1,83 +1,63 @@
 package com.ws.jamsholat.activity.main
 
 import android.os.Bundle
-import android.util.Log.d
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.ws.jamsholat.R
-import com.ws.jamsholat.activity.ui.scrolldatepick.DatePickAdapter
-import com.ws.jamsholat.activity.ui.scrolldatepick.IDatePicker
+import com.ws.jamsholat.activity.ui.scrolldatepick.ScrollDatePicker
+import com.ws.jamsholat.activity.ui.scrolldatepick.model.DatePickerModel
 import com.ws.jamsholat.model.daily.Data
-import com.ws.jamsholat.model.calendar.Calendar
-import com.ws.jamsholat.model.calendar.DataItem
-import com.ws.jamsholat.util.Util
-import com.ws.jamsholat.util.Util.Companion.toInt
+import com.ws.jamsholat.util.hijTextFormat
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
-class MainActivity : AppCompatActivity(), IMainView, IDatePicker {
+class MainActivity : AppCompatActivity(), IMainView, ScrollDatePicker.OnDateChangedListener{
 
     private lateinit var mainPresenter: MainPresenter
-    private lateinit var datePicker: RecyclerView
-
-    val date = Util.getCurrentDate()
-
-    private var day = date.toInt("dd", Locale.ROOT)
+    private lateinit var scrollDatePicker: ScrollDatePicker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        datePicker = findViewById(R.id.date_picker_scroll_day_recycler_view)
+        scrollDatePicker = findViewById(R.id.sdc_main)
 
         mainPresenter = MainPresenter(this)
+
         mainPresenter.getDataFromApi()
-        mainPresenter.getHijCalendar(datePicker)
+        mainPresenter.getHijCalendar()
+
+    }
+
+    override fun onLoadDataFromAPi() {
 
     }
 
     override fun onTimingsCompleteFromApi(data: Data) {
-        val time = data.timings
-        val date = data.date
-        val hijri = date?.hijri
+        val date = data.date?.hijri
         tv_informasi.text = hijTextFormat(
-            hijri?.day.toString(),
-            hijri?.month?.en.toString(),
-            hijri?.year.toString()
+            date?.day.toString(),
+            date?.month?.en.toString(),
+            date?.year.toString()
         )
-        tv_Imsak.text = time?.imsak
-        tv_Fajr.text = time?.fajr
-        tv_Dhuhr.text = time?.dhuhr
-        tv_Asr.text = time?.asr
-        tv_Maghrib.text = time?.maghrib
-        tv_Isha.text = time?.isha
-        tv_jam_menit.text = time!!.imsak
-        tv_timedesc.text = "Imsyak"
+        tv_jam_menit.text = data.timings?.imsak.toString()
+
     }
 
     override fun onTimingsErrorFromApi(throwable: Throwable) {
         Toast.makeText(this, "Error ${throwable.localizedMessage}", Toast.LENGTH_LONG).show()
     }
 
-    override fun onCalendarCompleteFromApi(calendar: Calendar) {
-
+    override fun onCalendarCompleteFromApi(dataItem: List<DatePickerModel>) {
+        scrollDatePicker.setData(dataItem)
+        scrollDatePicker.show()
+        scrollDatePicker.onDateChangedListener(this)
     }
 
     override fun onCalendarErrorFromApi(throwable: Throwable) {
         Toast.makeText(this, "Error ${throwable.localizedMessage}", Toast.LENGTH_LONG).show()
     }
 
-    override fun onLoadDate(item: DataItem, position: Int) {
-        showData(item)
-    }
 
-    override fun onDateClick(item: DataItem, position: Int) {
-        showData(item)
-    }
-
-    private fun showData(item: DataItem) {
+    private fun showData(item: DatePickerModel) {
         tv_Imsak.text = item.timings?.imsak.toString()
         tv_Fajr.text = item.timings?.fajr.toString()
         tv_Dhuhr.text = item.timings?.dhuhr.toString()
@@ -86,9 +66,9 @@ class MainActivity : AppCompatActivity(), IMainView, IDatePicker {
         tv_Isha.text = item.timings?.isha.toString()
     }
 
-
-    private fun hijTextFormat(day: String, month: String, year: String): String {
-        return "$day $month $year"
+    override fun onChanged(dataItem: DatePickerModel) {
+        showData(dataItem)
     }
+
 
 }
